@@ -4,7 +4,7 @@
   register: rsyslog_conf
 
 - name: "Configure rsyslog"
-  template: src={{ item.src }} dest=/etc/rsyslog.d/{{ item.dest }} validate='{{ rsyslog_bin }} -N1 -f %s'
+  template: src={{ item.src }} dest=/etc/rsyslog.d/{{ item.dest }}
   with_items: "{{ rsyslog_templates }}"
   become: yes
   notify: restart rsyslog
