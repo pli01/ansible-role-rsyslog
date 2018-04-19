@@ -1,0 +1,8 @@
+- name: YUM update and install
+  become: yes
+  yum:
+    name: "{{ item }}"
+    state: present
+    update_cache: no
+  with_items:
+    - rsyslog

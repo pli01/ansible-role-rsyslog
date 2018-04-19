@@ -1,0 +1,9 @@
+---
+# handlers file for rsyslog
+- name: restart rsyslog
+  service:
+    name: rsyslog
+    state: restarted
+    enabled: yes
+  when:
+    - rsyslog_conf.stat.exists|bool

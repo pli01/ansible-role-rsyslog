@@ -1,0 +1,13 @@
+---
+- name: 'Check that rsyslog is installed'
+  stat: path=/etc/rsyslog.conf
+  register: rsyslog_conf
+
+- name: rsyslog config file
+  template: src={{ item.src }} dest=/etc/rsyslog.d/{{ item.dest }} validate='{{ rsyslog_bin }} -N1 -f %s'
+  with_items: "{{ rsyslog_templates }}"
+  become: yes
+  notify: restart rsyslog
+  when:
+    - rsyslog_conf.stat.exists|bool
+    - rsyslog_templates is defined and rsyslog_templates

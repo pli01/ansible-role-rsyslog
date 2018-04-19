@@ -1,0 +1,8 @@
+- name: APT update and install
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: no
+  with_items:
+    - rsyslog

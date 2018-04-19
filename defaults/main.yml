@@ -1,0 +1,7 @@
+---
+# defaults file for rsyslog
+rsyslog_templates: []
+#  - { src: journald-json.conf, dest: 01-journald-json.conf }
+#  - { src: forward-elk.conf, dest: 99-forward-elk.conf }
+#
+#rsyslog_forward_elk: 'elasticsearch:514'
