@@ -1,17 +1,27 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+simple rsyslog configuration
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+ansible
+
+[![Build Status](https://travis-ci.org/pli01/ansible-role-rsyslog.svg?branch=master)](https://travis-ci.org/pli01/ansible-role-rsyslog)
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+```
+# template for rsyslog.d/*.conf
+rsyslog_templates:
+  - { src: journald-json.conf, dest: 01-journald-json.conf }
+  - { src: forward-elk.conf, dest: 99-forward-elk.conf }
+
+# elasticsearch target
+rsyslog_forward_elk: 'elasticsearch:514'
+```
 
 Dependencies
 ------------
@@ -25,7 +35,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: ansible-role-rsyslog }
 
 License
 -------
