@@ -3,7 +3,7 @@
   stat: path=/etc/rsyslog.conf
   register: rsyslog_conf
 
-- name: rsyslog config file
+- name: "Configure rsyslog"
   template: src={{ item.src }} dest=/etc/rsyslog.d/{{ item.dest }} validate='{{ rsyslog_bin }} -N1 -f %s'
   with_items: "{{ rsyslog_templates }}"
   become: yes

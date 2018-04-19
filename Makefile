@@ -28,5 +28,5 @@ test: build unit-test
 
 unit-test:
 	@echo '# $@ STARTING'
-	( cd build/tests && bash unit-test.sh $(PACKAGENAME) $(VERSION) )
+	( cd build/$(PACKAGENAME)-$(VERSION)/tests && bash unit-test.sh $(PACKAGENAME) $(VERSION) )
 	@echo '# $@ SUCCESS'

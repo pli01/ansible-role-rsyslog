@@ -1,4 +1,0 @@
----
-- name: 'Check that rsyslog is installed'
-  stat: path=/etc/rsyslog.conf
-  register: rsyslog_conf
