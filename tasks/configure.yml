@@ -5,7 +5,7 @@
 
 - name: "Configure rsyslog main config"
   template: src={{ item }} dest=/etc/rsyslog.conf
-  with_items: "rsyslog-{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.conf"
+  with_items: '{{rsyslog-{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.conf}}'
   become: yes
   notify: restart rsyslog
   when:
