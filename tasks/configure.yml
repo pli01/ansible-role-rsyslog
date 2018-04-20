@@ -7,7 +7,7 @@
   template: src={{ item.src }} dest=/etc/rsyslog.d/{{ item.dest }}
   with_items: "{{ rsyslog_templates }}"
   become: yes
-  notify: restart rsyslog
+  notify: check rsyslog config
   when:
     - rsyslog_conf.stat.exists|bool
     - rsyslog_templates is defined and rsyslog_templates

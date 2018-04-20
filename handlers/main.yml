@@ -1,9 +1,16 @@
 ---
 # handlers file for rsyslog
-- name: restart rsyslog
+- name: check rsyslog config
+  notify: restart rsyslog
+  shell: "{{ rsyslog_bin }} -N1"
+  register: rsyslog_status
+  when:
+    - rsyslog_conf.stat.exists|bool
+
+- name: really restart rsyslog
   service:
     name: rsyslog
     state: restarted
     enabled: yes
   when:
-    - rsyslog_conf.stat.exists|bool
+    - rsyslog_status.rc == 0
