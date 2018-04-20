@@ -1,5 +1,7 @@
 ---
 # defaults file for rsyslog
+rsyslog_disable_journald_socket: false
+#rsyslog_disable_journald_socket: true
 rsyslog_templates: []
 #  - { src: journald-json.conf, dest: 01-journald-json.conf }
 #  - { src: forward-elk.conf, dest: 99-forward-elk.conf }

@@ -3,11 +3,19 @@
   stat: path=/etc/rsyslog.conf
   register: rsyslog_conf
 
+- name: "Configure rsyslog main config"
+  template: src={{ item }} dest=/etc/rsyslog.conf
+  with_items: "rsyslog-{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.conf"
+  become: yes
+  notify: restart rsyslog
+  when:
+    - rsyslog_conf.stat.exists|bool
+
 - name: "Configure rsyslog"
   template: src={{ item.src }} dest=/etc/rsyslog.d/{{ item.dest }}
   with_items: "{{ rsyslog_templates }}"
   become: yes
-  notify: check rsyslog config
+  notify: restart rsyslog
   when:
     - rsyslog_conf.stat.exists|bool
     - rsyslog_templates is defined and rsyslog_templates

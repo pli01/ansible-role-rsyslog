@@ -1,7 +1,7 @@
 ---
 # handlers file for rsyslog
-- name: check rsyslog config
-  notify: restart rsyslog
+- name: restart rsyslog
+  notify: really restart rsyslog
   shell: "{{ rsyslog_bin }} -N1"
   register: rsyslog_status
   when:
